@@ -1,7 +1,7 @@
 __author__ = 'Roman Evdokimov'
 __email__ = 'Romissevd@gmail.com'
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from data_base import db
 
 DEBUG = True
@@ -28,9 +28,9 @@ def login_admin():
         if list(db.admins.find({'password': passwd, 'login': log})):
             return render_template('admin.html')
         else:
-            return render_template('base.html')
+            return redirect('/')
     else:
-        return render_template('base.html')
+        return redirect('/')
 
 
 if __name__ == '__main__':
