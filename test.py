@@ -5,6 +5,9 @@ from data_base import db
 
 app = Flask(__name__)
 
+
+
+
 #
 #
 # @app.route('/admin/')

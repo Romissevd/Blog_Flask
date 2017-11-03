@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block body %}
+<h1>New post</h1>
+<form method="post" action="/admin/added/">
+    <dl>
+        <dt>Title:</dt>
+        <dd><input type="text" size="100" name="post_title"></dd>
+        <dt>Text:</dt>
+        <dd><textarea name="post" rows="20" cols="100"></textarea></dd>
+        <dd><input type="submit" value="Share"></dd>
+    </dl>
+</form>
+{% endblock %}
