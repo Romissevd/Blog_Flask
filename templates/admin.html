@@ -18,17 +18,19 @@
     </tr>
     </thead>
     <tbody>
+    {% for post in posts %}
     <tr>
         <td>
-            1
+            {{ post._id }}
         </td>
         <td>
-            Наша первая статья
+            {{ post.post_title }}
         </td>
         <td>
-            29.10.2017
+            {{ post.post_time }}
         </td>
     </tr>
+    {% endfor %}
     </tbody>
 </table>
 </body>

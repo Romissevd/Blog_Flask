@@ -1,8 +1,9 @@
 __author__ = 'Roman Evdokimov'
 __email__ = 'Romissevd@gmail.com'
 
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect
 from data_base import db
+from datetime import datetime
 
 DEBUG = True
 # HOST = '0.0.0.0'
@@ -12,7 +13,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def start():
-    return render_template('start.html', posts=db.post.find())
+    if db.posts.find():
+        posts = db.posts.find().sort([('post_time', -1)])
+        return render_template('start.html', posts=posts)
+    return render_template('start.html')
 
 
 @app.route('/login/')
@@ -27,6 +31,9 @@ def login_admin():
         passwd = request.form.get('password')
 
         if list(db.admins.find({'password': passwd, 'login': log})):
+            if db.posts.find():
+                posts = db.posts.find().sort([('post_time', -1)])
+                return render_template('admin.html', posts=posts)
             return render_template('admin.html')
         else:
             return render_template('login.html',
@@ -45,8 +52,9 @@ def add():
     new_post = {
         'post_title':request.form.get('post_title'),
         'post_text': request.form.get('post'),
+        'post_time': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'),
     }
-    db.post.save(new_post)
+    db.posts.save(new_post)
     return  redirect('/')
 
 
