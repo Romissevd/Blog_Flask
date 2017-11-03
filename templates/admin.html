@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends "base.html" %}
+{% block body %}
 <body>
 <h1>Приветствую на странице администратора</h1>
-<a href="/admin/">Добавить статью</a>
+<a href="/admin/add/">Добавить статью</a>
 <table>
     <thead>
     <tr>
@@ -36,4 +32,4 @@
     </tbody>
 </table>
 </body>
-</html>
+{% endblock %}

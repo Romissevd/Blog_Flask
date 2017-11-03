@@ -3,9 +3,9 @@ __email__ = 'Romissevd@gmail.com'
 
 from pymongo import MongoClient
 
-client = MongoClient('localhost', 27017)
+connection = MongoClient('localhost', 27017)
 
-db = client.blog
+db = connection.blog
 # admin = {'login': 'admin',
 #          'password': 'admin',
 #         }
