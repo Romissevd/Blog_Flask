@@ -19,28 +19,42 @@ def start():
     return render_template('start.html')
 
 
-@app.route('/login/')
+@app.route('/login/', methods=['GET','POST'])
 def login():
-    return render_template('login.html')
-
-
-@app.route('/admin/', methods=['GET', 'POST'])
-def login_admin():
     if request.method == 'POST':
         log = request.form.get('login')
         passwd = request.form.get('password')
 
         if list(db.admins.find({'password': passwd, 'login': log})):
-            if db.posts.find():
-                posts = db.posts.find().sort([('post_time', -1)])
-                return render_template('admin.html', posts=posts)
-            return render_template('admin.html')
+            return redirect('/admin/')
         else:
             return render_template('login.html',
                                    error='the administrator name or password was not entered correctly')
     else:
-        return redirect('/')
+        return render_template('login.html')
 
+
+@app.route('/admin/')
+def login_admin():
+    if db.posts.find():
+        posts = db.posts.find().sort([('post_time', -1)])
+        return render_template('admin.html', posts=posts)
+    return render_template('admin.html')
+    # if request.method == 'POST':
+    #     log = request.form.get('login')
+    #     passwd = request.form.get('password')
+    #
+    #     if list(db.admins.find({'password': passwd, 'login': log})):
+    #         if db.posts.find():
+    #             posts = db.posts.find().sort([('post_time', -1)])
+    #             return render_template('admin.html', posts=posts)
+    #         return render_template('admin.html')
+    #     else:
+    #         return render_template('login.html',
+    #                                error='the administrator name or password was not entered correctly')
+    # else:
+    #     return redirect('/')
+    return render_template('admin.html')
 
 @app.route('/admin/add/', methods=['GET'])
 def post_add():
