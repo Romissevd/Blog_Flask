@@ -2,7 +2,11 @@
 {% block body %}
 <body>
 <h1>Главная страница</h1>
-<a href="/login/">Admin</a>
+{% if session['logged_in'] %}
+<a href="/admin/">Admin</a>
+{% else %}
+<a href="/login/">Вход</a>
+{% endif %}
 {% for post in posts %}
 <h3>{{ post.post_title }}</h3>
 <p>{{ post.post_text }}</p>

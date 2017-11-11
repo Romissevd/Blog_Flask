@@ -2,7 +2,18 @@
 {% block body %}
 <body>
 <h1>Приветствую на странице администратора</h1>
+<a href="/logout/">Выйти</a>
 <a href="/admin/add/">Добавить статью</a>
+<a href="/">На главную</a>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 <table>
     <thead>
     <tr>
