@@ -4,6 +4,7 @@ __email__ = 'Romissevd@gmail.com'
 from flask import Flask, render_template, request, redirect, session
 from data_base import db
 from datetime import datetime
+from bson.objectid import ObjectId
 
 DEBUG = True
 # HOST = '0.0.0.0'
@@ -33,7 +34,8 @@ def login():
             return redirect('/admin/')
         else:
             return render_template('login.html',
-                                   error='the administrator name or password was not entered correctly')
+                                   error='The administrator name or password'
+                                         ' was not entered correctly')
     else:
         return render_template('login.html')
 
@@ -55,21 +57,6 @@ def login_admin():
         posts = db.posts.find().sort([('post_time', -1)])
         return render_template('admin.html', posts=posts)
     return render_template('admin.html')
-    # if request.method == 'POST':
-    #     log = request.form.get('login')
-    #     passwd = request.form.get('password')
-    #
-    #     if list(db.admins.find({'password': passwd, 'login': log})):
-    #         if db.posts.find():
-    #             posts = db.posts.find().sort([('post_time', -1)])
-    #             return render_template('admin.html', posts=posts)
-    #         return render_template('admin.html')
-    #     else:
-    #         return render_template('login.html',
-    #                                error='the administrator name or password was not entered correctly')
-    # else:
-    #     return redirect('/')
-    # return render_template('admin.html')
 
 
 @app.route('/admin/add/', methods=['GET', 'POST'])
@@ -88,16 +75,10 @@ def post_add():
     return redirect('/admin/')
 
 
-
-# @app.route('/admin/added/', methods=['POST'])
-# def add():
-#     new_post = {
-#         'post_title': request.form.get('post_title'),
-#         'post_text': request.form.get('post'),
-#         'post_time': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'),
-#     }
-#     db.posts.save(new_post)
-#     return redirect('/')
+@app.route('/post/<id_post>')
+def post(id_post):
+    poster = db.posts.find({'_id' : ObjectId("{}".format(id_post))})
+    return render_template('post.html', poster=poster)
 
 
 if __name__ == '__main__':
