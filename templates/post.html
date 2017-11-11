@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!--<title>{{ poster.post_title }}</title>-->
-</head>
+{% extends "base.html" %}
+{% block body %}
 <body>
+<a href="/">На главную страницу</a>
 {% for post in poster %}
 <h1>{{ post.post_title }}</h1>
 <p>{{ post.post_text }}</p>
 {% endfor %}
+{% include 'comments_form.html' %}
 </body>
-</html>
+{% endblock %}

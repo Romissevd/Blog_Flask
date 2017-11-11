@@ -1,0 +1,14 @@
+{% block comments %}
+<h3>New post</h3>
+<form method="post" action="/post/<id_post>">
+    <dl>
+        <dt>Пользователь:</dt>
+        <dd><input type="text" size="50" name="username" maxlength="20"
+        required placeholder="Введите имя"></dd>
+        <dt>Комментарий:</dt>
+        <dd><textarea name="comment" rows="7" cols="50" maxlength="500"
+        required placeholder="Оставьте комментарий"></textarea></dd>
+        <dd><input type="submit" value="Отправить"></dd>
+    </dl>
+</form>
+{% endblock %}

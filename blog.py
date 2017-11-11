@@ -75,10 +75,14 @@ def post_add():
     return redirect('/admin/')
 
 
-@app.route('/post/<id_post>')
+@app.route('/post/<id_post>', methods=['GET', 'POST'])
 def post(id_post):
-    poster = db.posts.find({'_id' : ObjectId("{}".format(id_post))})
-    return render_template('post.html', poster=poster)
+    if request.method == 'POST':
+
+        return redirect('/')
+    else:
+        poster = db.posts.find({'_id' : ObjectId("{}".format(id_post))})
+        return render_template('post.html', poster=poster)
 
 
 if __name__ == '__main__':
