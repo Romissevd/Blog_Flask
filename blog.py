@@ -15,11 +15,20 @@ app = Flask(__name__)
 app.secret_key = 'some_secret'
 
 
+def comment_count(comment, post_id):
+    return db.comments.count({'post': ObjectId("{}".format(post_id))})
+
+
+app.add_template_filter(comment_count)
+
+
 @app.route('/')
 def start():
     if db.posts.find():
         posts = db.posts.find().sort([('post_time', -1)])
-        return render_template('start.html', posts=posts)
+        print(posts)
+        comments = db.comments.find()
+        return render_template('start.html', posts=posts, comments=comments)
     return render_template('start.html')
 
 
@@ -75,13 +84,19 @@ def post_add():
     return redirect('/admin/')
 
 
-@app.route('/post/<id_post>', methods=['GET', 'POST'])
+@app.route('/post/<id_post>/', methods=['GET', 'POST'])
 def post(id_post):
     if request.method == 'POST':
-
+        new_comment = {
+            'comment_username': request.form.get('username'),
+            'comment_text': request.form.get('comment'),
+            'comment_time': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'),
+            'post': ObjectId("{}".format(request.form.get('id'))),
+            }
+        db.comments.save(new_comment)
         return redirect('/')
     else:
-        poster = db.posts.find({'_id' : ObjectId("{}".format(id_post))})
+        poster = db.posts.find({'_id': ObjectId("{}".format(id_post))})
         return render_template('post.html', poster=poster)
 
 

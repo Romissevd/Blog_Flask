@@ -3,15 +3,15 @@
 <body>
 <h1>Главная страница</h1>
 {% if session['logged_in'] %}
-<a href="/admin/">Admin</a>
+    <a href="/admin/">Admin</a>
 {% else %}
-<a href="/login/">Вход</a>
+    <a href="/login/">Вход</a>
 {% endif %}
 {% for post in posts %}
-<h3><a href="/post/{{ post._id }}">{{ post.post_title }}</a></h3>
-<p>{{ post.post_text }}</p>
-<p>{{ post.post_time }}</p>
-<p>Комментариев: 0</p>
+    <h3><a href="/post/{{ post._id }}/">{{ post.post_title }}</a></h3>
+    <p>{{ post.post_text }}</p>
+    <p>{{ post.post_time }}</p>
+    <p>Комментариев: {{ comments|comment_count(post._id) }}</p>
 {% endfor %}
 <!--<p>Статьи с кратким содержанием</p>-->
 <!--&lt;!&ndash;// TODO: будет цитироваться 2-3 первые строки и затем далее&ndash;&gt;-->
@@ -25,6 +25,5 @@
 
 <!--Пример веб-приложения, которое показывает «Hello World!» <a href="/nasha_pervaya_satja">Далее...</a> </p>-->
 <!--<p>Комментариев: 0</p>-->
-<p>Теги: <a href="https://www.google.com.ua/search?q=flask">Flask</a></p>
 </body>
 {% endblock %}
