@@ -19,12 +19,10 @@ app.secret_key = 'some_secret'
 def comment_count(comment, post_id):
     return db.comments.count({'post': ObjectId("{}".format(post_id))})
 
+
 @app.template_filter('comment_find')
 def comment_count(comment, post_id):
     return db.comments.find({'post': ObjectId("{}".format(post_id))}).sort([('comment_time', -1)])
-#
-#
-# app.add_template_filter(comment_count)
 
 
 @app.route('/')
@@ -91,18 +89,19 @@ def post_add():
 @app.route('/post/<id_post>/', methods=['GET', 'POST'])
 def post(id_post):
     if request.method == 'POST':
+        post_id = request.form.get('id')
         new_comment = {
             'comment_username': request.form.get('username'),
             'comment_text': request.form.get('comment'),
             'comment_time': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'),
-            'post': ObjectId("{}".format(request.form.get('id'))),
+            'post': ObjectId("{}".format(post_id)),
             }
         db.comments.save(new_comment)
-        return redirect('/')
     else:
-        poster = db.posts.find({'_id': ObjectId("{}".format(id_post))})
-        comments = db.comments.find()
-        return render_template('post.html', poster=poster, comments=comments)
+        post_id = id_post
+    poster = db.posts.find({'_id': ObjectId("{}".format(post_id))})
+    comments = db.comments.find()
+    return render_template('post.html', poster=poster, comments=comments)
 
 
 if __name__ == '__main__':
