@@ -15,18 +15,22 @@ app = Flask(__name__)
 app.secret_key = 'some_secret'
 
 
+@app.template_filter('comment_count')
 def comment_count(comment, post_id):
     return db.comments.count({'post': ObjectId("{}".format(post_id))})
 
-
-app.add_template_filter(comment_count)
+@app.template_filter('comment_find')
+def comment_count(comment, post_id):
+    return db.comments.find({'post': ObjectId("{}".format(post_id))}).sort([('comment_time', -1)])
+#
+#
+# app.add_template_filter(comment_count)
 
 
 @app.route('/')
 def start():
     if db.posts.find():
         posts = db.posts.find().sort([('post_time', -1)])
-        print(posts)
         comments = db.comments.find()
         return render_template('start.html', posts=posts, comments=comments)
     return render_template('start.html')
@@ -97,7 +101,8 @@ def post(id_post):
         return redirect('/')
     else:
         poster = db.posts.find({'_id': ObjectId("{}".format(id_post))})
-        return render_template('post.html', poster=poster)
+        comments = db.comments.find()
+        return render_template('post.html', poster=poster, comments=comments)
 
 
 if __name__ == '__main__':

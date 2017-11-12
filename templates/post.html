@@ -6,6 +6,17 @@
     <h1>{{ post.post_title }}</h1>
     <p>{{ post.post_text }}</p>
     {% include 'comments_form.html' %}
+
+{% if comments|comment_count(post._id) %}
+    <h4><b>Комментарии:</b></h4>
+    {% for comment in comments|comment_find(post._id) %}
+    <p><b>{{ comment.comment_username }}</b></p>
+    <p>{{ comment.comment_text }}</p>
+    <p>Оставил: {{ comment.comment_time }}</p>
+    <p>_______________________________________</p>
+    {% endfor %}
+<p></p>
+{% endif %}
 {% endfor %}
 </body>
 {% endblock %}
