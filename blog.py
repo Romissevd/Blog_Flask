@@ -21,8 +21,15 @@ def comment_count(comment, post_id):
 
 
 @app.template_filter('comment_find')
-def comment_count(comment, post_id):
-    return db.comments.find({'post': ObjectId("{}".format(post_id))}).sort([('comment_time', -1)])
+def comment_find(comment, post_id):
+    return db.comments.find(
+        {'post': ObjectId("{}".format(post_id))}).sort([('comment_time', -1)])
+
+
+@app.template_filter('two_string')
+def two_string(text):
+    post_text = '.'.join(text.split('.')[:2])
+    return post_text
 
 
 @app.route('/')
@@ -61,8 +68,10 @@ def logout():
 def login_admin():
     if not session.get('logged_in'):
         return redirect('/')
-    # при входе нужно наименование статей сделать ссылками, чтобы переходили либо на id в доменном имени
-    # http://127.0.0.1:5000/59fcdadd366a492d8a9e37fc, либо переводить название на английские буквы,
+    # при входе нужно наименование статей сделать ссылками, чтобы
+    # переходили либо на id в доменном имени
+    # http://127.0.0.1:5000/59fcdadd366a492d8a9e37fc, либо переводить
+    # название на английские буквы,
     # http://127.0.0.1:5000/nasha_statya
     if db.posts.find():
         posts = db.posts.find().sort([('post_time', -1)])
@@ -93,7 +102,8 @@ def post(id_post):
         new_comment = {
             'comment_username': request.form.get('username'),
             'comment_text': request.form.get('comment'),
-            'comment_time': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'),
+            'comment_time': datetime.strftime(datetime.now(),
+                                              '%d/%m/%Y %H:%M:%S'),
             'post': ObjectId("{}".format(post_id)),
             }
         db.comments.save(new_comment)
@@ -105,5 +115,4 @@ def post(id_post):
 
 
 if __name__ == '__main__':
-
     app.run(debug=DEBUG)
