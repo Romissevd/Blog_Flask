@@ -4,18 +4,18 @@
 <a href="/">На главную страницу</a>
 {% for post in poster %}
     <h1>{{ post.post_title }}</h1>
+    {% include 'tags.html' %}
     <p>{{ post.post_text }}</p>
     {% include 'comments_form.html' %}
-
-{% if comments|comment_count(post._id) %}
+    {% if comments|comment_count(post._id) %}
     <h4><b>Комментарии:</b></h4>
-    {% for comment in comments|comment_find(post._id) %}
-    <p><b>{{ comment.comment_username }}</b></p>
-    <p>{{ comment.comment_text }}</p>
-    <p>Оставил: {{ comment.comment_time }}</p>
-    <p>_______________________________________</p>
-    {% endfor %}
-{% endif %}
+        {% for comment in comments|comment_find(post._id) %}
+            <p><b>{{ comment.comment_username }}</b></p>
+            <p>{{ comment.comment_text }}</p>
+            <p>Оставил: {{ comment.comment_time }}</p>
+            <p>_______________________________________</p>
+        {% endfor %}
+    {% endif %}
 {% endfor %}
 </body>
 {% endblock %}

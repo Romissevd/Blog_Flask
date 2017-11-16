@@ -3,11 +3,13 @@
 <h1>New post</h1>
 <form method="post" action="/admin/add/">
     <dl>
-        <dt>Title:</dt>
+        <dt>Название:</dt>
         <dd><input type="text" size="100" name="post_title"></dd>
-        <dt>Text:</dt>
+        <dt>Текст статьи:</dt>
         <dd><textarea name="post" rows="20" cols="100"></textarea></dd>
-        <dd><input type="submit" value="Share"></dd>
+        <dt>Теги</dt>
+        <dd><textarea name="tags" rows="1" cols="100"></textarea></dd>
+        <dd><input type="submit" value="Добавить"></dd>
     </dl>
 </form>
 {% endblock %}

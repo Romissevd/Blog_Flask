@@ -1,0 +1,7 @@
+{% block tags %}
+{% if post.post_tags %}
+        <p>{% for tag in post.post_tags %}
+            <a href="/tag/{{ tag }}">{{tag}}</a>
+            {% endfor %}</p>
+    {% endif %}
+{% endblock %}

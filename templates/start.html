@@ -12,6 +12,7 @@
     <p>{{ post.post_text|two_string }}...<a href="/post/{{ post._id }}/">Читать дальше ></a></p>
     <p>{{ post.post_time }}</p>
     <p>Комментариев: {{ comments|comment_count(post._id) }}</p>
+    {% include 'tags.html' %}
 {% endfor %}
 <!--<p>Статьи с кратким содержанием</p>-->
 <!--&lt;!&ndash;// TODO: будет цитироваться 2-3 первые строки и затем далее&ndash;&gt;-->

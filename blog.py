@@ -86,10 +86,13 @@ def post_add():
     if request.method == 'GET':
         return render_template('post_add.html')
     elif request.method == 'POST':
+        lst_tags_for_article = request.form.get('tags').split(',')
+        lst_tags_for_article = [tag.strip() for tag in lst_tags_for_article]
         new_post = {
             'post_title': request.form.get('post_title'),
             'post_text': request.form.get('post'),
             'post_time': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'),
+            'post_tags': lst_tags_for_article
         }
         db.posts.save(new_post)
     return redirect('/admin/')
@@ -114,5 +117,12 @@ def post(id_post):
     return render_template('post.html', poster=poster, comments=comments)
 
 
-if __name__ == '__main__':
+@app.route('/tag/<name_tag>/')
+def search_tag(name_tag):
+    tags_in_post_db = db.posts.find()
+    # db.posts.find({post_tags: {$ in: ["Python"]}})
+
+
+
+    if __name__ == '__main__':
     app.run(debug=DEBUG)
