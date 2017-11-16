@@ -119,10 +119,14 @@ def post(id_post):
 
 @app.route('/tag/<name_tag>/')
 def search_tag(name_tag):
-    tags_in_post_db = db.posts.find()
-    # db.posts.find({post_tags: {$ in: ["Python"]}})
+    posts_containing_tags =  db.posts.find({'post_tags':
+                                          {'$in': ["{}".format(name_tag)]}
+                                            })
+    return render_template('start.html',
+                           posts=posts_containing_tags,
+                           tag=name_tag,
+                           )
 
 
-
-    if __name__ == '__main__':
+if __name__ == '__main__':
     app.run(debug=DEBUG)

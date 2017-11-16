@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
 <body>
+{% if not tag %}
 <h1>Главная страница</h1>
+{% else %}
+<h3>Результат поиска по тегу: {{ tag }}</h3>
+{% endif %}
 {% if session['logged_in'] %}
     <a href="/admin/">Admin</a>
 {% else %}
