@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block body %}
 <body>
+<div class="post_page">
 <a href="/">На главную страницу</a>
 {% for post in poster %}
     <h1>{{ post.post_title }}</h1>
     {% include 'tags.html' %}
-    <p>{{ post.post_text }}</p>
+    <p class="post_text">{{ post.post_text }}</p>
     {% include 'comments_form.html' %}
     {% if comments|comment_count(post._id) %}
     <h4><b>Комментарии:</b></h4>
@@ -17,5 +18,6 @@
         {% endfor %}
     {% endif %}
 {% endfor %}
+</div>
 </body>
 {% endblock %}

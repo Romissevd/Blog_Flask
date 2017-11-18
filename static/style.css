@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {width: 100%}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #FAFAFA;
+    font-family: Arial, sans-serif;
+    line-height: 135%;
+}
+
+div.wrapper {
+    position: relative;
+    min-height: 100%;
+}
+
+header.site_header {
+    height: 70px;
+    background-color: #24ad0f;
+    text-align: center;
+    color: #0e32ff;
+    border-bottom: 2px solid black;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 10px;
+}
+
+div.name_header {
+    padding: 20px;
+}
+
+div.content {
+    width: 65%;
+    margin-left: 15%;
+    background-color: #E0E0E0; 
+}
+
+div.home_page {
+    padding: 20px;
+}
+
+div.name_page {
+    position: absolute;
+    width: 50%;
+    top: 85px;
+}
+
+div.login {
+    position: absolute;
+    width: 60%;
+    text-align: right;
+    top: 85px;
+}
+
+div.articles {
+    padding: 5px;
+    position: relative;
+
+}
+
+div.article {
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 2px;
+    padding-top: 10px;
+}
+
+div.article h3 {
+    text-align: center;
+    padding-bottom: 3px;
+}
+
+div.article h3 a, a:hover {
+    color: #000000;
+    text-decoration: none;
+}
+
+p.post, p.post_time, p.post_comment {
+    padding-bottom: 10px;
+}
+
+p.post_tags a {
+    color: #218F0E;
+    text-decoration: none;
+}
+
+div.post_page {
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 2px;
+    padding-top: 10px;
+}
+
+div.post_page h1, p, dd {
+    padding-bottom: 5px;
+    padding-top: 5px;
+}

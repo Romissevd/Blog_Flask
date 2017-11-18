@@ -1,34 +1,30 @@
 {% extends "base.html" %}
 {% block body %}
-<body>
-{% if not tag %}
-<h1>Главная страница</h1>
-{% else %}
-<h3>Результат поиска по тегу: {{ tag }}</h3>
-{% endif %}
-{% if session['logged_in'] %}
-    <a href="/admin/">Admin</a>
-{% else %}
-    <a href="/login/">Вход</a>
-{% endif %}
-{% for post in posts %}
-    <h3><a href="/post/{{ post._id }}/">{{ post.post_title }}</a></h3>
-    <p>{{ post.post_text|two_string }}...<a href="/post/{{ post._id }}/">Читать дальше ></a></p>
-    <p>{{ post.post_time }}</p>
-    <p>Комментариев: {{ comments|comment_count(post._id) }}</p>
-    {% include 'tags.html' %}
-{% endfor %}
-<!--<p>Статьи с кратким содержанием</p>-->
-<!--&lt;!&ndash;// TODO: будет цитироваться 2-3 первые строки и затем далее&ndash;&gt;-->
-<!--&lt;!&ndash;// TODO: будет отобратжаться колличество комментариев к статье и теги&ndash;&gt;-->
-<!--<a href="/nasha_pervaya_satja">Наша первая статья</a>-->
-<!--<p>Flask — фреймворк для создания веб-приложений на языке программирования Python, использующий набор инструментов Werkzeug, а также шаблонизатор Jinja2. Относится к категории так называемых микрофреймворков[en] — минималистичных каркасов веб-приложений, сознательно предоставляющих лишь самые базовые возможности.-->
-
-<!--Поддерживается установка посредством пакетного менеджера PyPI, требует Python 2.6 и выше.-->
-
-<!--Создатель и основной автор — австрийский программист Армин Ронахер, начал работу над проектом в 2010 году.-->
-
-<!--Пример веб-приложения, которое показывает «Hello World!» <a href="/nasha_pervaya_satja">Далее...</a> </p>-->
-<!--<p>Комментариев: 0</p>-->
-</body>
+<div class="home_page">
+	<div class="name_page">
+		{% if not tag %}
+		<h4 class="">Главная страница</h4>
+		{% else %}
+		<h4>Результат поиска по тегу: {{ tag }}</h4>
+		{% endif %}
+	</div>
+	<div class="login">
+		{% if session['logged_in'] %}
+		    <a href="/admin/">Admin</a>
+		{% else %}
+		    <a href="/login/">Вход</a>
+		{% endif %}
+	</div>
+</div>
+<div class="articles">
+	{% for post in posts %}
+	<div class="article">
+	    <h3><a href="/post/{{ post._id }}/">{{ post.post_title }}</a></h3>
+	    <p class="post">{{ post.post_text|two_string }}...<a href="/post/{{ post._id }}/">Читать дальше ></a></p>
+	    <p class="post_time">{{ post.post_time }}</p>
+	    <p class="post_comment">Комментариев: {{ comments|comment_count(post._id) }}</p>
+	    {% include 'tags.html' %}
+	</div>
+	{% endfor %}
+</div>
 {% endblock %}

@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>
-        {% if post_title %}
-        {{ post_title }}
-        {% else %}
-        My blog
-        {% endif %}
-    </title>
+    <title>Обо всем понемногу...</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
-{% block body %}{% endblock %}
+<body>
+<div class="wrapper">
+	<header class="site_header">
+	    <div class="name_header">
+	        <h1>Обо всем понемногу...</h1>
+	    </div>
+	</header>
+	<div class="content">
+	{% block body %}{% endblock %}
+	</div>
+</div>
+<footer></footer>
+</body>
 </html>
