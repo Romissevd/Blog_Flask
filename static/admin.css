@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {width: 100%}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #FAFAFA;
+    font-family: Arial, sans-serif;
+    line-height: 135%;
+}
+
+.admin_header {
+	position: relative;
+	height: 70px;
+	background-color: #027CFFFF;
+	text-align: center;
+	border-bottom: 2px solid #FF0515FF;
+}
+
+.text_admin_header {
+	position: relative;
+	width: 90%;
+	padding-right: 10%;
+	float: left;
+}
+
+.logout_admin {
+	position: relative;
+	width: 10%;
+	padding-left: 90%;
+	float: left;
+}
+
+.logout_admin a {
+	color: #000000FF;
+	text-decoration: none;
+}

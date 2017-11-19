@@ -1,8 +1,19 @@
-{% extends "base.html" %}
-{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Обо всем понемногу...</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin.css">
+</head>
 <body>
-<h1>Приветствую на странице администратора</h1>
-<a href="/logout/">Выйти</a>
+<div class="admin_header">
+    <div class="text_admin_header">
+        <h1>Панель администратора</h1>
+    </div>
+    <div class="logout_admin">
+        <a href="/logout/">Выйти</a>
+    </div>
+</div>
 <a href="/admin/add/">Добавить статью</a>
 <a href="/">На главную</a>
 {% with messages = get_flashed_messages() %}
@@ -45,4 +56,4 @@
     </tbody>
 </table>
 </body>
-{% endblock %}
+</html>
