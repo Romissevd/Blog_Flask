@@ -28,17 +28,23 @@ def comment_find(comment, post_id):
 
 @app.template_filter('two_string')
 def two_string(text):
-    post_text = '.'.join(text.split('.')[:2])
+    split_text = text.split('.')
+    if len(split_text) >= 8:
+        display_text_main_page = split_text[:7]
+    else:
+        display_text_main_page = split_text
+    post_text = '.'.join(display_text_main_page)
     return post_text
 
 
 @app.route('/')
 def start():
+    posts = None
+    comments = None
     if db.posts.find():
         posts = db.posts.find().sort([('post_time', -1)])
         comments = db.comments.find()
-        return render_template('start.html', posts=posts, comments=comments)
-    return render_template('start.html')
+    return render_template('start.html', posts=posts, comments=comments)
 
 
 @app.route('/login/', methods=['GET', 'POST'])

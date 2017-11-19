@@ -41,6 +41,7 @@ div.content {
     width: 65%;
     margin-left: 15%;
     background-color: #E0E0E0; 
+    min-height: 100vh;
 }
 
 div.home_page {
