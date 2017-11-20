@@ -16,26 +16,43 @@ body {
 .admin_header {
 	position: relative;
 	height: 70px;
-	background-color: #027CFFFF;
+	background-color: #00B3FFFF;
 	text-align: center;
-	border-bottom: 2px solid #FF0515FF;
+	border-bottom: 2px solid #F3FD00FF;
 }
 
 .text_admin_header {
 	position: relative;
-	width: 90%;
-	padding-right: 10%;
-	float: left;
+	height: 70px;
 }
 
-.logout_admin {
+.text_admin_header h1 {
+	position:absolute;
+	top: 30%;
+	left: 30%;
+}
+.nav_admin {
 	position: relative;
-	width: 10%;
-	padding-left: 90%;
-	float: left;
+	height: 30px;
+	background-color: #00B3FFFF;
+	border-bottom: 2px solid #F3FD00FF;
 }
 
-.logout_admin a {
+.home_admin, .add_article, .logout_admin {
+	position: relative;
+	width: 33%;
+	float: left;
+	height: 30px;
+}
+
+.home_admin, .add_article {
+	border-right: 2px solid #F3FD00FF;
+}
+
+.home_admin a, .add_article a, .logout_admin a {
 	color: #000000FF;
 	text-decoration: none;
+	position:absolute;
+	top: 30%;
+	left: 30%;
 }

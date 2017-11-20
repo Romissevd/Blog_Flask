@@ -10,15 +10,21 @@
     <div class="text_admin_header">
         <h1>Панель администратора</h1>
     </div>
+</div>
+<div class="nav_admin">
+    <div class="home_admin">
+        <a href="/">На главную</a>
+    </div>
+    <div class="add_article">
+        <a href="/admin/add/">Добавить статью</a>
+    </div>
     <div class="logout_admin">
         <a href="/logout/">Выйти</a>
     </div>
 </div>
-<a href="/admin/add/">Добавить статью</a>
-<a href="/">На главную</a>
 {% with messages = get_flashed_messages() %}
   {% if messages %}
-    <ul class=flashes>
+    <ul class="">
     {% for message in messages %}
       <li>{{ message }}</li>
     {% endfor %}
