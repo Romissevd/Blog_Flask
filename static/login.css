@@ -9,15 +9,30 @@ body {
     line-height: 135%;
 }
 
-.enter_admin_page {
-	position: relative;
-	top: 20%;
+.error_login_admin, .enter_admin_page {
+	position: absolute;
 	left: 37%;
 	width: 250px;
-	height: 125px;
-	border: 2px solid #040151FF;
 	border-radius: 10px;
 	padding-right: 10px;
+}
+.error_login_admin {
+	top: 2%;
+	height: 100px;
+	border: 2px solid #EC000CFF;
+	text-align: center;
+}
+
+.image_error_login {
+	display: block;
+	float: left;
+	margin: 25px 5px;
+}
+
+.enter_admin_page {
+	top: 20%;
+	height: 125px;
+	border: 2px solid #040151FF;
 	text-align: right;
 	background-color: #a1edf8;
 }

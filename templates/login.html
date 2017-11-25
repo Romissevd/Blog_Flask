@@ -7,7 +7,12 @@
 </head>
 <body>
 {% if error %}
-<h1>{{ error }}</h1>
+    <div class="error_login_admin">
+        <img src="/static/images/warning.png" class="image_error_login" width="50" height="50">
+        <div class="text_error_login">
+            <p>{{ error }}</p>
+        </div>
+    </div>
 {% endif %}
 <div class='enter_admin_page'>
     <form action="/login/" method="post">

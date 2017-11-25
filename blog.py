@@ -58,8 +58,8 @@ def login():
             return redirect('/admin/')
         else:
             return render_template('login.html',
-                                   error='The administrator name or password'
-                                         ' was not entered correctly')
+                                   error='Не верно введены имя или пароль'
+                                         ' администратора!')
     else:
         return render_template('login.html')
 
@@ -135,4 +135,7 @@ def search_tag(name_tag):
 
 
 if __name__ == '__main__':
-    app.run(debug=DEBUG)
+    app.run(
+        # host=HOST,
+        debug=DEBUG,
+    )
