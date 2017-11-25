@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Обо всем понемногу...</title>
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/login.css">
 </head>
 <body>
 {% if error %}
 <h1>{{ error }}</h1>
 {% endif %}
-<div class='enter-admin-page' align="center">
+<div class='enter_admin_page'>
     <form action="/login/" method="post">
         <p>Логин:
             <input name="login">
@@ -18,7 +18,7 @@
             <input name="password" type="password">
         </p>
         <p>
-            <input type="submit">
+            <input type="submit" value="Войти">
         </p>
     </form>
 </div>
