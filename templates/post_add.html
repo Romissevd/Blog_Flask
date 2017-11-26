@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 {% block body %}
-<h1>New post</h1>
+{% if edit %}
+<h1>Редактирование статьи</h1>
+<form method="post" action="/admin/edit/">
+	<dl>
+		{% for text in edit %}
+		<dt>ID статьи</dt>
+		<dd><input type="text" name="id_edit_post" value="{{ text._id }}" readonly>
+		</dd>
+        <dt>Название:</dt>
+        <dd><input type="text" size="100" name="edit_title" value="{{ text.post_title }}"></dd>
+        <dt>Текст статьи:</dt>
+        <dd><textarea name="edit_post" rows="20" cols="100">{{ text.post_text }}</textarea></dd>
+        <dt>Теги</dt>
+        <dd><textarea name="edit_tags" rows="1" cols="100" placeholder="ввод значений через запятую">{{ text.post_tags }}</textarea></dd>
+        <dd><input type="submit" value="Сохранить"></dd>
+        {% endfor %}
+    </dl>
+</form>
+{% else %}
+<h1>Новая статья</h1>
 <form method="post" action="/admin/add/">
     <dl>
         <dt>Название:</dt>
@@ -8,8 +27,9 @@
         <dt>Текст статьи:</dt>
         <dd><textarea name="post" rows="20" cols="100"></textarea></dd>
         <dt>Теги</dt>
-        <dd><textarea name="tags" rows="1" cols="100"></textarea></dd>
+        <dd><textarea name="tags" rows="1" cols="100" placeholder="ввод значений через запятую"></textarea></dd>
         <dd><input type="submit" value="Добавить"></dd>
     </dl>
+{% endif %}
 </form>
 {% endblock %}

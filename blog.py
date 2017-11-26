@@ -104,6 +104,27 @@ def post_add():
     return redirect('/admin/')
 
 
+@app.route('/admin/edit/', methods=['POST'])
+def edit_post():
+    lst_tags_for_article = request.form.get('edit_tags').split(',')
+    lst_tags_for_article = [tag.strip() for tag in lst_tags_for_article]
+    edit_post = {
+        'post_title': request.form.get('edit_title'),
+        'post_text': request.form.get('edit_post'),
+        'edit_post_time': datetime.strftime(datetime.now(), '%d/%m/%Y %H:%M:%S'),
+        'post_tags': lst_tags_for_article
+    }
+    id_edit_post = request.form.get('id_edit_post')
+    db.posts.update({'_id': ObjectId("{}".format(id_edit_post))}, {'$set': edit_post})
+    return redirect('/admin/')
+
+
+@app.route('/admin/edit/<post_id>/')
+def edit(post_id):
+    post = db.posts.find({'_id': ObjectId("{}".format(post_id))})
+    return render_template('post_add.html', edit=post)
+
+
 @app.route('/post/<id_post>/', methods=['GET', 'POST'])
 def post(id_post):
     if request.method == 'POST':

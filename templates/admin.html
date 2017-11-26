@@ -24,26 +24,20 @@
         </li>
     </ul>
 </div>
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul class="">
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
 <table>
     <thead>
     <tr>
         <td>
             № статьи
         </td>
-        <td>
+        <td style="width: 450px">
             Название статьи
         </td>
         <td>
             Дата написания
+        </td>
+        <td>
+            Действия
         </td>
     </tr>
     </thead>
@@ -58,6 +52,10 @@
         </td>
         <td>
             {{ post.post_time }}
+        </td>
+        <td>
+            <a href="/admin/edit/{{ post._id }}">Редактировать</a>
+            <a href="#">Удалить</a>
         </td>
     </tr>
     {% endfor %}

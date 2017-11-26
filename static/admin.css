@@ -61,3 +61,22 @@ li a {
     text-decoration: none;
     margin-top: 3px;
 }
+
+table {
+	border-collapse: collapse;
+	border: 2px solid #434343FF;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+thead td {
+	border: 2px solid #434343FF;
+	background-color: #C8C8C8FF;
+	text-align: center;
+}
+
+tbody td {
+	border: 1px solid #434343FF;
+	background-color: #E1E1E1FF;
+	padding: 1px;
+}
