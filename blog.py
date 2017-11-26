@@ -7,7 +7,7 @@ from datetime import datetime
 from bson.objectid import ObjectId
 
 DEBUG = True
-# HOST = '0.0.0.0'
+HOST = '0.0.0.0'
 ADMIN_NAME = 'admin'
 ADMIN_PASSWORD = 'admin'
 

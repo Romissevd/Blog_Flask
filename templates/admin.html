@@ -12,15 +12,17 @@
     </div>
 </div>
 <div class="nav_admin">
-    <div class="home_admin">
-        <a href="/">На главную</a>
-    </div>
-    <div class="add_article">
-        <a href="/admin/add/">Добавить статью</a>
-    </div>
-    <div class="logout_admin">
-        <a href="/logout/">Выйти</a>
-    </div>
+    <ul>
+        <li>
+            <a href="/">На главную</a>
+        </li>
+        <li>
+            <a href="/admin/add/">Добавить статью</a>
+        </li>
+        <li>
+            <a href="/logout/">Выйти</a>
+        </li>
+    </ul>
 </div>
 {% with messages = get_flashed_messages() %}
   {% if messages %}
